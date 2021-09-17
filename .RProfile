@@ -1,5 +1,5 @@
 
 {local({r <- getOption("repos")
-r["CRAN"] <- "<https://packagemanager.rstudio.com/cran/latest>"
+r["CRAN"] <- "<https://packagemanager.rstudio.com/all/5106814>"
 options(repos=r)}
 )}
