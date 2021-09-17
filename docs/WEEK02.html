@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>WEEK02</title>
+
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Learning Process</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Time directory</a>
+</li>
+<li>
+  <a href="WEEK01.html">WEEK01</a>
+</li>
+<li>
+  <a href="WEEK02.html">WEEK02</a>
+</li>
+<li>
+  <a href="WEEK03.html">WEEK03</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">WEEK02</h1>
+
+</div>
+
+
+<center>
+<h1>
+<font size="6">第二周：利用Rmarkdown制作简历，学习ggplot2</font>
+</h1>
+</center>
+<div id="简历相关资料借鉴" class="section level2">
+<h2>简历相关资料借鉴</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">一些简历资源</th>
+<th align="left">链接</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">简历学习模板1</td>
+<td align="left"><a href="https://github.com/geekcompany/DeerResume">https://github.com/geekcompany/DeerResume</a></td>
+</tr>
+<tr class="even">
+<td align="left">简历学习模板2</td>
+<td align="left"><a href="https://github.com/geekcompany/ResumeSample">https://github.com/geekcompany/ResumeSample</a></td>
+</tr>
+<tr class="odd">
+<td align="left">在线MarkDown简历书写工具 冷熊简历</td>
+<td align="left"><a href="http://link.ftqq.com/0rsRL">http://link.ftqq.com/0rsRL</a></td>
+</tr>
+<tr class="even">
+<td align="left">教学：《如何写好技术简历》</td>
+<td align="left"><a href="http://link.ftqq.com/KWkVX">http://link.ftqq.com/KWkVX</a></td>
+</tr>
+<tr class="odd">
+<td align="left">简历例句</td>
+<td align="left"><a href="https://github.com/resumejob/awesome-resume">https://github.com/resumejob/awesome-resume</a></td>
+</tr>
+<tr class="even">
+<td align="left">大厂高频面经面试题</td>
+<td align="left"><a href="https://osjobs.net/topk/">https://osjobs.net/topk/</a></td>
+</tr>
+<tr class="odd">
+<td align="left">雨果主题简历制作模板</td>
+<td align="left"><a href="https://wowchemy.com/hugo-themes/">https://wowchemy.com/hugo-themes/</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="ggplot2绘图入门" class="section level2">
+<h2>ggplot2绘图入门</h2>
+<div id="导论" class="section level3">
+<h3>导论</h3>
+<div id="section" class="section level4">
+<h4><基本概念></h4>
+<ul>
+<li><p>图层（Layer）：图层可以允许用户一步步的构建图形，方便单独对图层进行修改、增加统计量、甚至改动数据。</p></li>
+<li><p>标度（Scale）：标度是一种函数，它控制了数学空间到图形元素空间的映射。一组连续数据可以映射到X轴坐标，也可以映射到一组连续的渐变色彩。一组分类数据可以映射成为不同的形状，也可以映射成为不同的大小。</p></li>
+<li><p>坐标系统（Coordinate）：坐标系统控制了图形的坐标轴并影响所有图形元素，最常用的是直角坐标轴，坐标轴可以进行变换以满足不同的需要，如对数、极坐标轴。</p></li>
+<li><p>位面（Facet）：很多时候需要将数据按某种方法分组，分别进行绘图。位面就是控制分组绘图的方法和排列形式。</p></li>
+</ul>
+</div>
+<div id="section-1" class="section level4">
+<h4><一个例子></h4>
+<p>用ggplot2包内带的汽车测试数据（mpg）来举个例子，用到的三个变量分别是发动机容量(displ)、高速公路上的每加仑行驶里数(hwy)、汽缸数目(cyl)。首先加载ggplot2包，然后用ggplot定义第一层即数据来源。其中aes参数非常关键，它将displ映射到X轴，将hwy映射到Y轴，将cyl变为分类数据后映射为不同的颜色。然后使用+号添加了两个新的图层，第二层是加上了散点，第三层是加上了loess平滑曲线。</p>
+<pre class="r"><code>install.packages(&quot;ggplot2&quot;)</code></pre>
+<pre class="r"><code>library(ggplot2)
+p &lt;- ggplot(data=mpg,aes(x=displ,y=hwy,colour=factor(cyl)))
+p + geom_point() + geom_smooth()</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="WEEK02_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>如果需要对整体数据进行平滑，可将colour参数设置在散点图层内而非第一层，这样第三层的平滑图形就不会受到colour参数的影响。</p>
+<pre class="r"><code>p &lt;- ggplot(mpg,aes(x=displ,y=hwy))
+p + geom_point(aes(colour=factor(cyl))) + geom_smooth()</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="WEEK02_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+</div>
+<div id="图层控制与直方图" class="section level3">
+<h3>图层控制与直方图</h3>
+<p>第一层必须是原始数据层，其中data参数控制数据来源，注意数据形式只能是数据框格式。aes参数控制了对哪些变量进行图形映射，以及映射方式，aes是Aesthetic的缩写。<br />
+下面我们来绘制一个直方图作为示例。数据集仍采取mpg，对hwy变量绘制直方图。首先加载了扩展包，然后用ggplot函数建立了第一层，hwy数据映射到X轴上；使用+号增加了第二层，即直方图对象层。此时p被视为一种层对象，使用summary函数可得到关于它的更多信息，print(p)命令即可进行绘图。</p>
+<pre class="r"><code>library(ggplot2)
+p &lt;- ggplot(data = mpg,aes(x = hwy))
+p &lt;- p + geom_histogram()
+summary(p)</code></pre>
+<pre><code>## data: manufacturer, model, displ, year, cyl, trans, drv, cty, hwy, fl,
+##   class [234x11]
+## mapping:  x = ~hwy
+## faceting: &lt;ggproto object: Class FacetNull, Facet, gg&gt;
+##     compute_layout: function
+##     draw_back: function
+##     draw_front: function
+##     draw_labels: function
+##     draw_panels: function
+##     finish_data: function
+##     init_scales: function
+##     map_data: function
+##     params: list
+##     setup_data: function
+##     setup_params: function
+##     shrink: TRUE
+##     train_scales: function
+##     vars: function
+##     super:  &lt;ggproto object: Class FacetNull, Facet, gg&gt;
+## -----------------------------------
+## geom_bar: na.rm = FALSE, orientation = NA
+## stat_bin: binwidth = NULL, bins = NULL, na.rm = FALSE, orientation = NA, pad = FALSE
+## position_stack</code></pre>
+<pre class="r"><code>print(p)</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="WEEK02_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>p对象含有两层，第一层数据层描述了变量和映射方式，第二层是直方图对象（geom_histogram），geom表示几何对象，它是ggplot中重要的图层控制对象，因为它负责图形渲染的类型。geom_histogram是图形渲染类型的一种。</p>
+<p>每个geom对象都需要有数据输入，数据可以从第一层中自动读取，也可以在aes参数中直接设置。而且每个geom还默认搭配某种统计变换（stat），geom_histogram的默认统计变换是stat_bin。它负责对数据进行分组计数。</p>
+<p>下面我们尝试两种更为复杂的直方图，首先将数据按照year这个变量划分为两组，用不同的颜色绘制直方图，而且用频率而非计数来刻画Y轴，并添加密度曲线。</p>
+<pre class="r"><code>p &lt;- ggplot(mpg,aes(hwy))
+p + geom_histogram(position = &#39;identity&#39;,
+alpha=0.5,
+aes(y = ..density..,
+fill = factor(year))) +
+stat_density(geom = &#39;line&#39;,
+position = &#39;identity&#39;,
+aes(colour = factor(year)))</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="WEEK02_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="位置调整与条形图" class="section level3">
+<h3>位置调整与条形图</h3>
+<p>位置调整（Position adjustments）是针对同一图层内元素的位置进行微调的方法。它包括五种设置，分别是stack、dodge、fill、identity、jitter。</p>
+<p>我们用条形图来展示其用法，仍使用mpg数据集，其中用到的变量是class，即生产汽车的类型，以及year生产年份。下面的条形图是将各类型的汽车数量进行汇集，并以年份作为分组变量。我们首先载入扩展包，然后用频数表对数据进行大致的了解，最后绘制了四种条形图。</p>
+<pre class="r"><code>library(ggplot2)
+with(mpg,table(class,year))</code></pre>
+<pre><code>##             year
+## class        1999 2008
+##   2seater       2    3
+##   compact      25   22
+##   midsize      20   21
+##   minivan       6    5
+##   pickup       16   17
+##   subcompact   19   16
+##   suv          29   33</code></pre>
+<pre class="r"><code>p &lt;- ggplot(data=mpg,aes(x=class,fill=factor(year)))
+p + geom_bar(position=&#39;dodge&#39;)</code></pre>
+<p><img src="WEEK02_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>p + geom_bar(position=&#39;stack&#39;)</code></pre>
+<p><img src="WEEK02_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<pre class="r"><code>p + geom_bar(position=&#39;fill&#39;)</code></pre>
+<p><img src="WEEK02_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
+<pre class="r"><code>p + geom_bar(position=&#39;identity&#39;,alpha=0.3)</code></pre>
+<p><img src="WEEK02_files/figure-html/unnamed-chunk-6-4.png" width="672" /></p>
+<p>可以看到dodge方式是将不同年份的数据并列放置；stack方式是将不同年份数据推叠放置，这也是geom_bar的默认处理方式；fill方式和stack类似，但Y轴不再是计数，而是以百分比显示；identity方式是不做任何改变直接显示出来，所以需要设置透明度才能看得清楚。</p>
+</div>
+<div id="散点图" class="section level3">
+<h3>散点图</h3>
+<ul>
+<li>色彩和形状的控制</li>
+</ul>
+<p>数据特征不仅可以用坐标来表示，也可以用不同的色彩或形状来表示。仍以mpg数据集为例，所用到的变量有cty（城市中行驶距离）,hwy（高速路行驶距离）,displ（排量大小）,year（生产年份）</p>
+<pre class="r"><code>library(ggplot2)
+p &lt;- ggplot(mpg, aes(cty, hwy))
+p1 &lt;- p + geom_point(aes(colour = factor(year),shape = factor(year), size = displ), alpha = 0.6, position = &#39;jitter&#39;)
+print(p1)</code></pre>
+<p><img src="WEEK02_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>我们将1999年生产车型用红色圆形表示，2008年用兰色三角形表示，排量用图形的大小表示，并且设置了透明度和jitter以避免样本点之间的重叠。可观察到2008年生产的大排量车型较多，从而油耗较高，单位油耗行驶距离较短。</p>
+<ul>
+<li>坐标的控制</li>
+</ul>
+<p>上图右上角数据点较为稀疏，这种情况下可用对数变换。为了演示ggplot2对图形坐标的控制，我们对X轴和Y轴均进行对数变换，然后对X轴的坐标显示加以限制，只显示X轴数据的均值，以及一倍标准差的坐标。</p>
+<pre class="r"><code>cty.mean=with(mpg,mean(cty))
+cty.sd=with(mpg,sd(cty))
+p1 + scale_x_continuous(trans=&#39;log&#39;,breaks=c(cty.mean-cty.sd,cty.mean,cty.mean+cty.sd), labels=c(&quot;high&quot;, &quot;mean&quot;, &quot;low&quot;)) + scale_y_continuous(trans=&#39;log&#39;)</code></pre>
+<p><img src="WEEK02_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<ul>
+<li>文字说明</li>
+</ul>
+<p>利用geom_text函数可添加文字说明以增强图形的可读性</p>
+<pre class="r"><code>p &lt;- ggplot(mtcars, aes(x=wt, y=mpg,colour=factor(cyl),label=rownames(mtcars)))
+p + geom_text(hjust=0,vjust=-1,alpha=0.8)+ geom_point(size=3,aes(shape=factor(cyl)))</code></pre>
+<p><img src="WEEK02_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="ggplot2绘制时间序列变化图" class="section level3">
+<h3>ggplot2绘制时间序列变化图</h3>
+<p>ggplot2包也能对时间序列数据绘图，但在处理上需要有些注意的地方，可能需要注意转化成data.frame。ggplot()可以先将时间序列类型拆成数据框类型然后再绘图。后续再写。</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
