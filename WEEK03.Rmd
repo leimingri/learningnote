@@ -1,0 +1,91 @@
+---
+title: "WEEK03"
+---
+
+<center>
+     <h1><font size="6">第三周：相关比赛数据进行ggplot基本可视化</font></h1>
+ </center>
+
+[数据来源：2021全球开放数据应用创新大赛https://www.sodic.com.cn/datasets](https://www.sodic.com.cn/datasets)
+
+### <深圳二手房成交信息>
+
+```{r warning=FALSE}
+library(readr)
+house<-read.csv("data/house.csv")
+```
+
+```{r warning=FALSE}
+library(ggplot2)
+p <- ggplot(data=house,aes(x=CJTS,y=CJMJ)) + geom_point(aes(colour=factor(YT))) + geom_line()+labs(title = "套数和住房面积的关系",y="成交面积",x="成交套数")
+p
+```
+
+```{r}
+library(ggplot2)
+p <- ggplot(data=house,aes(x=YF,y=CJTS)) + geom_point(aes(colour=factor(YT)))+theme(plot.title =element_text(hjust = 0.3),legend.position = c(0.9,0.9),axis.text.x = element_text(size=8,angle=60,hjust = 1,vjust=1)) + geom_line()+labs(title = "随时间变化的成交住房量",y="成交量",x="月份",colour="用途")
+p
+```
+
+
+```{r warning=FALSE}
+p<-ggplot(house,aes(CJTS))+geom_histogram(position='identity',alpha=0.7,binwidth = 0.5)+stat_density(geom = 'line',position = 'identity',aes(colour = factor(YF)))+labs(title="成交数量频数",x="成交套数",colour="月份")+xlim(0,2000)
+p
+```
+
+```{r warning=FALSE}
+p<-ggplot(house,aes(CJTS))+theme_minimal(base_size = 9)+geom_density(aes(colour=YT,fill=YT),alpha=0.5)+labs(title = "成交量密度曲线",x="成交量",fill="用途",colour="用途")+theme(plot.title =element_text(hjust = 0.3),legend.position = c(0.9,0.9) )+xlim(0,2000)
+p
+```
+
+```{r }
+p<-ggplot(house,aes(CJMJ))+theme_minimal(base_size = 9)+geom_density(aes(colour=YT,fill=YT),alpha=0.5)+labs(title = "成交面积密度曲线",x="成交面积",fill="用途",colour="用途")+theme(plot.title =element_text(hjust = 0.3),legend.position = c(0.9,0.9) )+xlim(0,200000)
+p
+```
+
+
+```{r warning=FALSE}
+p<-ggplot(house,aes(x=CJTS,y=CJMJ))+theme_classic(base_size =9)+geom_point(shape=17)+geom_density_2d(linemitre=5)+theme(plot.title = element_text(hjust=0.5))+ggtitle("二维密度曲线")+xlab("成交数量")+ylab("成交面积")
+p
+```
+
+### <traffic flow 车流量>
+
+```{r}
+library(readr)
+traffic_flow <- read_csv("data/traffic flow.csv")
+View(traffic_flow)
+```
+
+```{r}
+p <- ggplot(data=traffic_flow,aes(x=AVGFLOW,y=AVGSPEED)) + geom_point() + geom_smooth(method = "lm",formula = y~x,colour="red")+labs(title = "车流量与车速的关系",y="车速",x="车流量")
+p
+```
+
+```{r}
+p<-ggplot(traffic_flow,aes(AVGACURATE))+geom_density(alpha=0.5)+labs(title="平均占道率概率密度",x="平均占道率")
+p
+```
+
+
+```{r}
+ggplot(traffic_flow,aes(LONGVEH))+geom_histogram(fill="blue",colour="white",bins=50)+labs(title="长车流量频率直方图",x="长车流量")
+```
+
+```{r}
+ggplot(traffic_flow,aes(REC_TIME,MIDVEH))+geom_bar(stat = "identity")+labs(title="中型车流量柱状图",x="时间",y="中型车流量")
+```
+
+```{r}
+ggplot(traffic_flow,aes(MIDVEH,MINIVEH))+geom_point(size=2,shape=17,colour="purple")+labs(title="点图")
+```
+
+
+```{r}
+ggplot(traffic_flow,aes(MIDVEH,MINIVEH))+geom_line(size=1,linetype=2,colour="purple")+labs(title="线图")
+```
+
+
+```{r}
+ggplot(traffic_flow,aes(x=MIDVEH,y=MINIVEH,fill=AVGSPEED))+geom_bar(stat="identity")+coord_polar(theta="y")+labs(x = '', y = '', title = '') + theme(axis.text = element_blank())+ theme(axis.ticks = element_blank())
+```

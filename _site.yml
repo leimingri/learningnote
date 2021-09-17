@@ -1,0 +1,13 @@
+name: "my-website"
+output_dir: docs
+navbar:
+  title: "Learning Process"
+  left:   
+    - text: "Time directory"
+      href: index.html
+    - text: "WEEK01"
+      href: WEEK01.html
+    - text: "WEEK02"
+      href: WEEK02.html
+    - text: "WEEK03"
+      href: WEEK03.html
